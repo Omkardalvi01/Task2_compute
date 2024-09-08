@@ -28,10 +28,8 @@ def main():
     weight = st.number_input('Curb Weight',value=None, min_value=0.0)
     fuel_type = st.selectbox('Fuel-Type',options=['gas','diesel'])
     fuel_sys = st.selectbox('Fuel-System',options=['mpfi', '2bbl', 'mfi', '1bbl', 'spfi', '4bbl', 'idi', 'spdi'])
-    engine_loc = st.selectbox('Engine Location', options=['front', 'rear'])
     drive_wheels = st.selectbox('Drive Wheels',options=['rwd', 'fwd', '4wd'])
     hp = st.number_input('Horsepower',value=None, min_value=0.0)
-    engine_type = st.selectbox('Engine Type',options=['dohc', 'ohcv', 'ohc', 'l', 'rotor', 'ohcf', 'dohcv'])
     num_of_cyliner = st.selectbox('num_of_clinders', options=[2,3,4,5,6,8,12])
     bore = st.number_input('Bore',value=None, min_value=0.0)
     city_mpg = st.number_input('City MPG',value=None, min_value=0.0)
@@ -41,14 +39,12 @@ def main():
     price = "Hello"
 
     cat_data = {
-            'fuel-type': [fuel_type],
             'make': [make],
-            'aspiration': [asp],
+            'fuel-type': [fuel_type],
             'body-style': [body_style],
             'drive-wheels': [drive_wheels],
-            'engine-location': [engine_loc],
-            'engine-type': [engine_type],
-            'fuel-system': [fuel_sys]}
+            'fuel-system': [fuel_sys],
+            'aspiration': [asp]}
 
     cat_df = pd.DataFrame(cat_data)
 
@@ -75,21 +71,18 @@ def main():
     df = pd.concat([num_scaled_df, encoded_df],axis=1)
     order = ['wheel-base', 'length', 'width', 'curb-weight', 'num-of-cylinders',
        'engine-size', 'bore', 'horsepower', 'city-mpg', 'highway-mpg',
-       'fuel-type_diesel', 'fuel-type_gas', 'make_alfa-romero', 'make_audi',
-       'make_bmw', 'make_chevrolet', 'make_dodge', 'make_honda', 'make_isuzu',
-       'make_jaguar', 'make_mazda', 'make_mercedes-benz', 'make_mercury',
-       'make_mitsubishi', 'make_nissan', 'make_peugot', 'make_plymouth',
-       'make_porsche', 'make_renault', 'make_saab', 'make_subaru',
-       'make_toyota', 'make_volkswagen', 'make_volvo', 'aspiration_std',
-       'aspiration_turbo', 'body-style_convertible', 'body-style_hardtop',
-       'body-style_hatchback', 'body-style_sedan', 'body-style_wagon',
-       'drive-wheels_4wd', 'drive-wheels_fwd', 'drive-wheels_rwd',
-       'engine-location_front', 'engine-location_rear', 'engine-type_dohc',
-       'engine-type_l', 'engine-type_ohc', 'engine-type_ohcf',
-       'engine-type_ohcv', 'engine-type_rotor', 'fuel-system_1bbl',
+       'make_alfa-romero', 'make_audi', 'make_bmw', 'make_chevrolet',
+       'make_dodge', 'make_honda', 'make_isuzu', 'make_jaguar', 'make_mazda',
+       'make_mercedes-benz', 'make_mercury', 'make_mitsubishi', 'make_nissan',
+       'make_peugot', 'make_plymouth', 'make_porsche', 'make_renault',
+       'make_saab', 'make_subaru', 'make_toyota', 'make_volkswagen',
+       'make_volvo', 'fuel-type_diesel', 'fuel-type_gas',
+       'body-style_convertible', 'body-style_hardtop', 'body-style_hatchback',
+       'body-style_sedan', 'body-style_wagon', 'drive-wheels_4wd',
+       'drive-wheels_fwd', 'drive-wheels_rwd', 'fuel-system_1bbl',
        'fuel-system_2bbl', 'fuel-system_4bbl', 'fuel-system_idi',
        'fuel-system_mfi', 'fuel-system_mpfi', 'fuel-system_spdi',
-       'fuel-system_spfi']
+       'fuel-system_spfi', 'aspiration_std', 'aspiration_turbo']
     df = df.reindex(columns=order).copy()
     if st.button("Predict"):
         result = prediction(dataframe=df)
