@@ -40,7 +40,8 @@ def main():
     engine_size = st.number_input('Engine Size', value=None, min_value=0)
     price = "Hello"
 
-    cat_data = {'fuel-type': [fuel_type],
+    cat_data = {
+            'fuel-type': [fuel_type],
             'make': [make],
             'aspiration': [asp],
             'body-style': [body_style],
@@ -56,16 +57,16 @@ def main():
     encoded_df = pd.DataFrame(encoded_data, columns=encoder.get_feature_names_out(cat_df.columns))
 
     num_data = {
-        'engine-size' : [engine_size],
-        'num-of-cylinders' : [num_of_cyliner],
-        'curb-weight' : [weight],
-        'width' : [w],
-        'length' : [l],
-        'highway-mpg' : [highway_mpg],
-        'wheel-base' : [whl_bs],
-        'horsepower' : [hp],
         'city-mpg' : [city_mpg],
-        'bore' : [bore]
+        'bore' : [bore],
+        'num-of-cylinders' : [num_of_cyliner],
+        'highway-mpg' : [highway_mpg],
+        'width' : [w],
+        'horsepower' : [hp],
+        'engine-size' : [engine_size],
+        'length' : [l],
+        'curb-weight' : [weight],
+        'wheel-base' : [whl_bs]
     }
 
     num_df = pd.DataFrame(num_data)
