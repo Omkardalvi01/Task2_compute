@@ -53,16 +53,16 @@ def main():
     encoded_df = pd.DataFrame(encoded_data, columns=encoder.get_feature_names_out(cat_df.columns))
 
     num_data = {
-        'length' : [l],
-        'width' : [w],
-        'wheel-base' : [whl_bs],
-        'curb-weight' : [weight],
-        'bore': [bore],
+        'city-mpg': [city_mpg],
         'horsepower' : [hp],
-        'engine-size' : [engine_size],
+        'length' : [l],
+        'bore' : [bore],
+        'curb-weight' : [weight],
+        'width' : [w],
         'num-of-cylinders' : [num_of_cyliner],
+        'engine-size' : [engine_size],
         'highway-mpg' : [highway_mpg],
-        'city-mpg' : [city_mpg]
+        'wheel-base' : [whl_bs]
     }
 
     num_df = pd.DataFrame(num_data)
