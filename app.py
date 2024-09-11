@@ -66,6 +66,7 @@ def main():
     }
 
     num_df = pd.DataFrame(num_data)
+    num_df = num_df.reindex(columns=['num-of-cylinders','wheel-base','engine-size','curb-weight','horsepower','highway-mpg','bore','width','city-mpg','length']).copy()
     num_scaled = scaler.transform(num_df)
     num_scaled_df = pd.DataFrame(num_scaled, columns=num_df.columns)
     df = pd.concat([num_scaled_df, encoded_df],axis=1)
